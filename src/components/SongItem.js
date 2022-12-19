@@ -3,14 +3,15 @@ import React, { memo } from 'react'
 import { useDispatch } from 'react-redux';
 import icons from '../utils/icons';
 import * as actions from '../store/actions';
+import { Link } from 'react-router-dom';
 
 const { BsMusicNoteBeamed } = icons
 
-const SongItem = ({ songData, isHideAlbum, isHideNote }) => {
+const SongItem = ({ songData, isHideAlbum, isHideNote, order, orderWith }) => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     return (
-        <div className='flex justify-between items-center p-[10px] border-b border-[rgba(0,0,0,0.05)] hover:bg-[#DDE4E4] cursor-pointer'
+        <div className='flex w-full justify-between items-center p-[10px] border-b border-[rgba(0,0,0,0.05)] hover:bg-[#DDE4E4] cursor-pointer'
             onClick={() => {
                 dispatch(actions.setCurrentSongId(songData?.encodeId));
                 dispatch(actions.play(true));
@@ -23,7 +24,7 @@ const SongItem = ({ songData, isHideAlbum, isHideNote }) => {
                 }))
             }}
         >
-            <div className='flex items-center gap-3 flex-1'>
+            <div className='flex items-center gap-3 w-[50%]'>
                 {
                     !isHideNote ? (
                         <span>
@@ -31,28 +32,49 @@ const SongItem = ({ songData, isHideAlbum, isHideNote }) => {
                         </span>
                     ) : ''
                 }
-
+                {
+                    order && <span
+                        className={`${order === 1
+                            ? 'text-shadow-1' : order === 2
+                                ? 'text-shadow-2' : order === 3
+                                    ? 'text-shadow-3' : 'text-shadow-4'} ml-2 text-[hsla(0,0%,100%,.07)] text-[32px] font-[900] ${orderWith} text-center`}
+                    >
+                        {order}
+                    </span>
+                }
                 <img className='h-10 w-10 rounded-md object-cover' src={songData?.thumbnail} alt="thumbnail" />
-                <span className='flex flex-col'>
-                    <span className='text-sm font-semibold'>
-                        {songData?.title.length > 25 ? `${songData?.title.slice(0, 25)}...` : songData?.title}
-                    </span>
-                    <span className='text-[12px] opacity-70'>
-                        {songData?.artistsNames}
-                    </span>
-                </span>
+                <div className='flex flex-col w-[70%]'>
+                    <div className='w-full text-ellipsis whitespace-nowrap overflow-hidden'>
+                        <span className='text-sm font-semibold'>
+                            {songData?.title}
+                        </span>
+                    </div>
+                    <div className='text-ellipsis whitespace-nowrap overflow-hidden'>
+                        <span className='text-[12px] opacity-70'>
+                            {songData?.artists?.map(item => (
+                                <Link
+                                    to={item.link}
+                                    key={item.id}
+                                    className='text-[#696969] hover:text-main-500 hover:underline'
+                                >
+                                    {item === songData.artists[songData.artists.length - 1] ? item.name : `${item.name}, `}
+                                </Link>
+                            ))}
+                        </span>
+                    </div>
+                </div>
             </div>
             {
                 !isHideAlbum ? (
-                    <div className='flex-1 flex justify-center items-center text-[12px] opacity-70'>
-                        {songData?.album?.title.length > 25 ? `${songData?.album?.title.slice(0, 25)}...` : songData?.album?.title}
+                    <div className='w-[40%] text-[12px] opacity-70 text-ellipsis whitespace-nowrap overflow-hidden'>
+                        {songData?.album?.title}
                     </div>
                 ) : (
                     ''
                 )
             }
 
-            <div className='flex-1  flex justify-end text-[12px] opacity-70'>
+            <div className='w-[10%] flex justify-end text-[12px] opacity-70 mr-2'>
                 {moment.utc(songData?.duration * 1000).format("mm:ss")}
             </div>
         </div>

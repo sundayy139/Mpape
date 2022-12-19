@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { SliderBanner, Section, NewRelease, FavoriteArtist, ChartSection, Artist } from '../../components/index';
-import { useDispatch } from 'react-redux';
-import { getHomeStart } from '../../store/actions/home';
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import Slider from "react-slick";
@@ -17,18 +15,13 @@ const settings = {
 const Home = () => {
 
     const { autoTheme1, autoTheme2, top100, xone, newMusic, weekChart, favoriteArtist, singer } = useSelector(state => state.app);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getHomeStart())
-    }, [])
 
     return (
-        <div className='overflow-y-auto'>
+        <div className='overflow-y-auto pt-[70px] mb-[90px]'>
             <SliderBanner />
             <NewRelease />
-            <Section data={autoTheme1} />
-            <Section data={autoTheme2} />
+            <Section data={autoTheme1} isHideArtist />
+            <Section data={autoTheme2} isHideArtist />
             <ChartSection />
             <div className=' flex items-center px-[43px] w-full mt-12'>
                 {
@@ -60,13 +53,12 @@ const Home = () => {
                     </Slider>
                 </div>
             )}
-            <Section data={top100} />
-            <Section data={xone} />
-            <Section data={newMusic} />
+            <Section data={top100} isHideDesc />
+            <Section data={xone} isHideArtist />
+            <Section data={newMusic} isHideDesc />
             {
                 favoriteArtist && Object.keys(favoriteArtist).length > 0 ? <FavoriteArtist favoriteArtist={weekChart} /> : null
             }
-            <div className='w-full h-[500px]'></div>
         </div>
     )
 }

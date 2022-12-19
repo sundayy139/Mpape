@@ -30,3 +30,13 @@ export const getHomeFail = () => ({
     type: actionTypes.GET_HOME_FAIL
 })
 
+export const isLoading = (flag) => ({
+    type: actionTypes.LOADING,
+    flag
+})
+
+export const isScroll = (flag) => ({
+    type: actionTypes.SCROLL,
+    flag
+})
+

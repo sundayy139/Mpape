@@ -6,6 +6,7 @@ import icons from '../utils/icons';
 import moment from 'moment';
 import { toast } from "react-toastify"
 import { LoadingSong } from './index';
+import { Link } from 'react-router-dom';
 
 const {
     AiFillHeart,
@@ -71,6 +72,9 @@ const Player = ({ setIsShowRightSideBar, isShowRightSideBar }) => {
 
     }, [curSongId]);
 
+    useEffect(() => {
+        audio.volume = +curVolume / 100;
+    }, [curVolume]);
 
     useEffect(() => {
         intervalId && clearInterval(intervalId);
@@ -105,12 +109,7 @@ const Player = ({ setIsShowRightSideBar, isShowRightSideBar }) => {
 
     }, [audio, isShuffle, repeatMode]);
 
-    // console.log(isShuffle);
-    // console.log(repeatMode);
 
-    useEffect(() => {
-        audio.volume = volume / 100;
-    }, [volume]);
 
 
     const handleTogglePlayMusic = async () => {
@@ -171,15 +170,26 @@ const Player = ({ setIsShowRightSideBar, isShowRightSideBar }) => {
         <div className='bg-main-400 h-full w-full px-5 flex py-2'>
             <div className='w-[30%] flex-auto flex items-center gap-3'>
                 <img src={songInfo?.thumbnail} alt="thumbnail" className="w-16 h-16 object-cover rounded-md" />
-                <div className='flex flex-col gap-2'>
-                    <span className='font-semibold text-sm text-gray-700'>
-                        {songInfo?.title}
-                    </span>
+                <div className='flex flex-col gap-2 w-[calc(100%-150px)]'>
+                    <div className=' whitespace-nowrap overflow-hidden text-ellipsis'>
+                        <span className='font-semibold text-sm text-gray-700'>
+                            {songInfo?.title}
+                        </span>
+                    </div>
                     <span className='text-xs text-gray-500'>
-                        {songInfo?.artistsNames}
+                        {
+                            songInfo?.artists?.map(item => (
+                                <Link
+                                    to={item.link}
+                                    key={item.id}
+                                    className='text-[#696969] w-full hover:text-main-500 hover:underline'
+                                >
+                                    {item === songInfo?.artists[songInfo?.artists?.length - 1] ? item.name : `${item.name}, `}
+                                </Link>
+                            ))}
                     </span>
                 </div>
-                <div className='flex gap-4 pl-2'>
+                <div className='flex gap-4 pl-2 w-16'>
                     <span>
                         <AiOutlineHeart size={16} />
                     </span>

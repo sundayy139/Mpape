@@ -61,7 +61,7 @@ const Playlist = () => {
 
 
     return (
-        <div className='w-full h-full flex gap-8 px-[59px] items-start mt-5 animate-scale-up'>
+        <div className='w-full h-full flex gap-8 px-[59px] items-start pt-[96px] animate-scale-up'>
             <div className='w-[300px] flex-none flex flex-col items-center gap-1 pb-1 justify-center'>
                 <div className='w-full relative overflow-hidden'
                     onMouseEnter={handleHoverEnter}
@@ -108,7 +108,7 @@ const Playlist = () => {
                     {`${Math.round(playlistData?.like / 1000)}`}k người yêu thích
                 </span>
             </div>
-            <Scrollbars style={{ width: "100%", height: "80%" }} autoHide >
+            <Scrollbars style={{ width: "100%", height: "100%" }} autoHide >
                 <div className='w-full flex-auto mb-10'>
                     <span className='text-sm'>
                         <span className='text-gray-600 mr-1'>Lời tựa</span>

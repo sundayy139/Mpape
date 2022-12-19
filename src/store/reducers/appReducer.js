@@ -14,7 +14,8 @@ const initialState = {
     chart: null,
     rank: null,
     singer: null,
-    isLoading: false
+    isLoading: false,
+    isScroll: false,
 }
 
 
@@ -77,6 +78,12 @@ const appReducer = (state = initialState, action) => {
 
         case actionTypes.LOADING:
             state.isLoading = action.flag;
+            return {
+                ...state,
+            }
+
+        case actionTypes.SCROLL:
+            state.isScroll = action.flag;
             return {
                 ...state,
             }

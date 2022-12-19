@@ -12,12 +12,12 @@ const ListSong = ({ totalDuration, isHideTime, isHideNote }) => {
 
     return (
         <div className='w-full flex flex-col text-xs text-gray-600 '>
-            <div className={`flex items-center justify-between uppercase font-semibold ${isHideTime ? 'py-[10px]' : 'p-[10px]'}`}>
-                <span className={isHideTime && 'font-bold text-lg capitalize p-0'}>Bài hát</span>
+            <div className={`flex w-full items-center uppercase font-semibold ${isHideTime ? 'py-[10px]' : 'p-[10px]'}`}>
+                <span className={`${isHideTime ? 'font-bold text-lg capitalize p-0' : 'w-[50%]'}`}>Bài hát</span>
                 {!isHideTime && (
                     <>
-                        <span>Album</span>
-                        <span>Thời gian</span>
+                        <span className='w-[40%]'>Album</span>
+                        <span className='w-[10%] flex justify-end mr-2'>Thời gian</span>
                     </>
                 )}
             </div>

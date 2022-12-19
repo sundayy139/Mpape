@@ -7,7 +7,7 @@ const Search = () => {
     const { keyword } = useSelector(state => state.music)
 
     return (
-        <div className='px-[59px] w-full pb-[90px]'>
+        <div className='px-[59px] w-full pb-[90px] pt-[70px]'>
             <div className='flex h-[50px] mb-7 items-center text-sm py-1 border-b border-b-[rgba(0,0,0,0.1)]'>
                 <span className='text-[24px] font-bold pr-6 border-r border-r-gray-400 font-[500]-gray-400 '>Kết Quả Tìm Kiếm</span>
                 <div className='flex items-center gap-2'>

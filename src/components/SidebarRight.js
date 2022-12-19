@@ -67,7 +67,7 @@ const SidebarRight = () => {
                                             <SongCard
                                                 thumbnail={item?.thumbnail}
                                                 title={item?.title}
-                                                artistsNames={item?.artistsNames}
+                                                artists={item?.artists}
                                                 encodeId={item?.encodeId}
                                                 style='bg-main-300 hover:bg-main-100 text-xs text-gray-600'
                                             />
@@ -84,7 +84,7 @@ const SidebarRight = () => {
                                 <SongCard
                                     thumbnail={curSongInfo?.thumbnail}
                                     title={curSongInfo?.title}
-                                    artistsNames={curSongInfo?.artistsNames}
+                                    artists={curSongInfo?.artists}
                                     encodeId={curSongInfo?.encodeId}
                                     style='bg-main-500 text-white'
                                     white={true}
@@ -108,7 +108,7 @@ const SidebarRight = () => {
                                             <SongCard
                                                 thumbnail={item?.thumbnail}
                                                 title={item?.title}
-                                                artistsNames={item?.artistsNames}
+                                                artists={item?.artists}
                                                 encodeId={item?.encodeId}
                                                 sm={true}
                                                 style='bg-main-300 hover:bg-main-100 text-xs text-gray-600'

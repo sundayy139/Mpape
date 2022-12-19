@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import bgChart from '../assets/image/bg-chart.jpg';
-import { Chart } from 'chart.js/auto';
+import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { SongCard } from './index';
@@ -23,6 +23,7 @@ const ChartSection = () => {
     const [selectedTooltip, setSelectedTooltip] = useState();
     const [data, setData] = useState();
     const { chart, rank } = useSelector(state => state.app);
+
     const options = {
         responsive: true,
         pointRadius: 0,
@@ -148,7 +149,7 @@ const ChartSection = () => {
                                     thumbnail={item.thumbnail}
                                     encodeId={item.encodeId}
                                     title={item.title}
-                                    artistsNames={item.artistsNames}
+                                    artists={item.artists}
                                     percent={Math.round(item.score / chart?.totalScore * 100)}
                                     order={index + 1}
                                     style='text-white bg-[hsla(0,0%,100%,.07)] hover:bg-[#ab74b8]'
@@ -169,7 +170,7 @@ const ChartSection = () => {
                                 thumbnail={rank?.find(item => item.encodeId === selectedTooltip)?.thumbnail}
                                 encodeId={rank?.find(item => item.encodeId === selectedTooltip)?.encodeId}
                                 title={rank?.find(item => item.encodeId === selectedTooltip)?.title}
-                                artistsNames={rank?.find(item => item.encodeId === selectedTooltip)?.artistsNames}
+                                artists={rank?.find(item => item.encodeId === selectedTooltip)?.artists}
                                 percent={Math.round(rank?.find(item => item.encodeId === selectedTooltip)?.score / chart?.totalScore * 100)}
                                 style='bg-white'
                             />

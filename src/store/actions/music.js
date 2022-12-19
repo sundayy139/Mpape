@@ -26,10 +26,6 @@ export const setPlaylist = (songs) => ({
     songs
 })
 
-export const isLoading = (flag) => ({
-    type: actionTypes.LOADING,
-    flag
-})
 
 export const setCurrentPlaylistId = (pId) => ({
     type: actionTypes.SET_CUR_PLAYLIST_ID,
@@ -64,13 +60,13 @@ export const search = (keyword) => async (dispatch) => {
     }
 }
 
-export const getSearchSongs = (pId) => async (dispatch) => {
+export const getSearchSongs = (singerId) => async (dispatch) => {
     try {
-        const res = await apis.apiGetDetailPlaylist(pId);
+        const res = await apis.apiGetArtistSongs(singerId);
         if (res.data.err === 0) {
             dispatch({
                 type: actionTypes.PLAYLIST,
-                songs: res.data.data.song.items,
+                songs: res.data.data.items,
             })
         } else {
             dispatch({

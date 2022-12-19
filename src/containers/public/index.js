@@ -10,3 +10,4 @@ export { default as SearchAll } from './SearchAll';
 export { default as SearchPlaylist } from './SearchPlaylist';
 export { default as SearchArtist } from './SearchArtist';
 export { default as Singer } from './Singer';
+export { default as NotFound } from './NotFound';

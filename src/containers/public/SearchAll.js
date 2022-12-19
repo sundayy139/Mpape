@@ -29,7 +29,7 @@ const SearchAll = () => {
                                     <span className='text-[12px] mb-[6px] opacity-70'>
                                         {searchData.top.objectType === 'artist' ? 'Nghệ sĩ' : ''}
                                     </span>
-                                    <span className='text-sm font-bold'>
+                                    <span className='text-sm font-bold hover:text-main-500 hover:underline'>
                                         {searchData.top.title || searchData.top.name}
                                     </span>
                                     {
@@ -50,7 +50,7 @@ const SearchAll = () => {
                                     thumbnail={item.thumbnail}
                                     title={item.title}
                                     encodeId={item.encodeId}
-                                    artistsNames={item.artistsNames}
+                                    artists={item.artists}
                                     style='bg-main-200'
                                     size='w-[84px] h-[84px]'
                                     isSong

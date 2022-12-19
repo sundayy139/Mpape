@@ -17,5 +17,13 @@ export const apiSearch = (keyword) => {
 }
 
 export const apiGetArtistSongs = (singerId) => {
-    return axios.get(`/artistsong?id=${singerId}`)
+    return axios.get(`/artistsong?id=${singerId}&page=1&count=50`)
+}
+
+export const apiGetArtist = (alias) => {
+    return axios.get(`/artist?name=${alias}`)
+}
+
+export const apiGetChartHome = () => {
+    return axios.get(`/charthome`)
 }

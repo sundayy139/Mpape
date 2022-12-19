@@ -17,3 +17,4 @@ export { default as FavoriteArtist } from './FavoriteArtist';
 export { default as SectionCard } from './SectionCard';
 export { default as ChartSection } from './ChartSection';
 export { default as Artist } from './Artist';
+export { default as RankList } from './RankList';

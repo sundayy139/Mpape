@@ -1,11 +1,11 @@
 import React, { memo, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import icons from '../utils/icons';
 
 const { AiOutlineHeart, BsPlayFill, BsThreeDots } = icons
 
 
-const SectionCard = ({ data }) => {
+const SectionCard = ({ data, isHideDesc, isHideArtist }) => {
 
     const navigate = useNavigate();
     const imageRef = useRef()
@@ -42,13 +42,13 @@ const SectionCard = ({ data }) => {
     return (
         <div
             key={data.encodeId}
-            className='flex flex-col gap-3 w-[20%] flex-auto text-sm cursor-pointer relative'
-            onClick={() => handleClickCard(data)}
+            className='flex flex-col gap-3 w-full text-sm cursor-pointer relative'
         >
             <div
-                className='relative rounded-md overflow-hidden'
+                className='w-full relative rounded-md overflow-hidden'
                 onMouseEnter={handleHoverEnter}
                 onMouseLeave={handleHoverLeave}
+                onClick={() => handleClickCard(data)}
             >
                 <img
                     ref={imageRef}
@@ -75,19 +75,43 @@ const SectionCard = ({ data }) => {
                 }
 
             </div>
-            <span className='flex flex-col'>
-                <span className='font-semibold'>
-                    {data?.title?.length >= 40 ? `${data?.title.slice(0, 30)}...` : data?.title}
-                </span>
+            <span className='flex flex-col w-full'>
+                <div className='w-full whitespace-nowrap text-ellipsis overflow-hidden'>
+                    <span
+                        className='font-semibold mb-1 hover:text-main-500'
+                        onClick={() => handleClickCard(data)}
+                    >
+                        {data?.title}
+                    </span>
+                </div>
                 {
-                    data.sectionId === 'h100' ? (
-                        <span>
+                    !isHideDesc && (
+                        <div className='w-full whitespace-nowrap text-ellipsis overflow-hidden'>
+                            <span>{data?.sortDescription?.length > 30 ? `${data?.sortDescription.slice(0, 30)}...` : data?.sortDescription}</span>
+                        </div>
+                    )
+                }
+                <div>
+                    {
+
+                        !isHideArtist && data?.artists?.map(item => (
+                            <Link
+                                to={item.link}
+                                key={item.id}
+                                className='text-[#696969] w-full hover:text-main-500 hover:underline'
+                            >
+                                {item === data.artists[data.artists.length - 1] ? item.name : `${item.name}, `}
+                            </Link>
+                        ))
+                    }
+                </div>
+                {
+                    data.releaseDateText && (
+                        <span className='opacity-70'>
                             {
-                                data.artistsNames
+                                data.releaseDateText
                             }
                         </span>
-                    ) : (
-                        <span>{data?.sortDescription?.length > 30 ? `${data?.sortDescription.slice(0, 30)}...` : data?.sortDescription}</span>
                     )
                 }
             </span>

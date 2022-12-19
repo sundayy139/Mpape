@@ -25,7 +25,7 @@ const Artist = ({ image, title, follow, link }) => {
 
 
     return (
-        <div className='flex flex-col items-center gap-[15px] px-4 py-8'>
+        <div className='flex flex-col items-center gap-[15px] px-4 py-8 w-full'>
             <Link
                 className='relative rounded-full overflow-hidden'
                 onMouseEnter={handleHoverEnter}
@@ -46,10 +46,12 @@ const Artist = ({ image, title, follow, link }) => {
                     )
                 }
             </Link>
-            <div className='flex flex-col gap-2 justify-center items-center'>
-                <Link to={link} className='text-sm font-bold'>
-                    {title}
-                </Link>
+            <div className='flex flex-col gap-2 justify-center items-center w-full'>
+                <div className='whitespace-nowrap overflow-hidden text-ellipsis w-full text-center'>
+                    <Link to={link} className='text-sm font-bold'>
+                        {title}
+                    </Link>
+                </div>
                 <span className='text-xs opacity-70'>
                     {`${handleNumberFormat(follow)} quan tâm`}
                 </span>

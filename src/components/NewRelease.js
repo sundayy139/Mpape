@@ -60,7 +60,7 @@ const NewRelease = () => {
                                 thumbnail={item.thumbnail}
                                 encodeId={item.encodeId}
                                 title={item.title}
-                                artistsNames={item.artistsNames}
+                                artists={item.artists}
                                 releaseDate={item.releaseDate}
                                 size='w-[60px] h-[60px]'
                             />
